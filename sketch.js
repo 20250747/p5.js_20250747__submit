@@ -12,7 +12,7 @@
   <div class="bg-glow glow-2"></div>
 
   <main class="gallery-container">
-    <a href="index.html" class="gallery-item 도형 활용">
+    <a href="task1.html" class="gallery-item 도형 활용">
       <div class="content-wrapper">
         <span class="work-tag">도형활용</span>
         <h2>과제 1</h2>
