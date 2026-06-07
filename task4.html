@@ -2,82 +2,36 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>과제 4 - 루프 애니메이션</title>
-  
+  <title>과제 4 테스트</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
-  
-  <style>
-    body {
-      background-color: #0b0f19;
-      color: #ffffff;
-      font-family: sans-serif;
-      margin: 0;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .header-area {
-      text-align: center;
-      margin-bottom: 30px;
-      max-width: 600px;
-    }
-
-    .back-link {
-      color: #3b82f6;
-      text-decoration: none;
-      font-size: 0.95rem;
-      display: inline-block;
-      margin-bottom: 15px;
-    }
-
-    .back-link:hover {
-      color: #60a5fa;
-    }
-
-    h1 {
-      margin: 0 0 10px 0;
-      font-size: 2rem;
-    }
-
-    p {
-      color: #9ca3af;
-      margin: 0;
-      line-height: 1.6;
-    }
-
-    .guide-box {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 12px 20px;
-      border-radius: 8px;
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: #3b82f6;
-    }
-
-    /* 캔버스 테두리 스타일 */
-    canvas {
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      margin-top: 20px;
-    }
-  </style>
 </head>
-<body>
-
-  <div class="header-area">
-    <a href="index.html" class="back-link">← 메인 페이지로 돌아가기</a>
-    <h1>과제 4: 색상 및 크기 변화 애니메이션</h1>
-    <p>시간의 흐름과 프레임 카운트를 수학적 주기 함수로 계산하여 자연스러운 움직임과 무지개 색상 동적 변화를 구현한 최종 작업물입니다.</p>
-    <div class="guide-box">
-      <strong>🎮 조작 방법:</strong> 키보드 <code>S</code> 누르기(현재 애니메이션을 10초짜리 짤방 GIF 파일로 즉시 저장)
-    </div>
-  </div>
+<body style="background:#0b0f19; display:flex; justify-content:center; align-items:center; min-height:100vh;">
+  <script>
+    function setup() {
+      createCanvas(600, 400);
+    }
+    function draw() {
+      background('#99CC99');
+      
+      push();
+        translate(width/2, height/2);
+        colorMode(HSB, 360, 100, 100);
+        let rainbowHue = (frameCount * 1) % 360;
+        fill(rainbowHue, 80, 90);
+        noStroke();
+        rectMode(CENTER);
+        rotate(frameCount * 0.02);
+        rect(0, 0, 150, 150);
+      pop();
+    }
+    function keyPressed() {
+      if (key === 's' || key === 'S') {
+        saveGif('testSketch', 3); 
+      }
+    }
+  </script>
+</body>
+</html>
 
   <script>
     function setup() {
