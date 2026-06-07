@@ -68,7 +68,7 @@
 
   <script>
     function setup() {
-      // 화면에 그림을 그려주는 가로 500px, 세로 500px의 도화지 생성
+      // 가로 500px, 세로 500px의 도화지 생성
       createCanvas(500, 500);
     }
 
