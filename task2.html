@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>과제 2 - 변수 활용 정적 캐릭터 명세</title>
+  <title>과제 2 - 캐리커쳐</title>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
   
@@ -32,7 +32,6 @@
       font-size: 0.95rem;
       display: inline-block;
       margin-bottom: 15px;
-      transition: color 0.2s;
     }
 
     .back-link:hover {
@@ -49,11 +48,11 @@
       margin: 0;
     }
 
+    /* 캔버스 스타일 스타일 정의 */
     canvas {
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      margin-top: 20px;
     }
   </style>
 </head>
@@ -61,8 +60,8 @@
 
   <div class="header-area">
     <a href="index.html" class="back-link">← 메인 페이지로 돌아가기</a>
-    <h1>과제 2: 변수 활용 정적 캐릭터 명세</h1>
-    <p>좌표 변수와 Bezier 곡선을 정밀하게 매칭하여 렌더링한 정적 캐릭터 디자인입니다.</p>
+    <h1>과제 2: 나를 묘사한 캐리커쳐</h1>
+    <p>p5.js의 bezier와 다양한 도형 곡선을 활용해 표현한 인물화입니다.</p>
   </div>
 
   <script>
@@ -76,95 +75,90 @@
       // 뒷 머리카락
       noStroke();
       fill('#323232');
-      ellipse(300, 220, 215, 330); 
-
+      ellipse(300, 220, 215, 330);
+      
       // 얼굴
       fill('#FAEBD7');
-      noStroke();
       circle(240, 175, 55);
       circle(360, 175, 55);
       quad(276, 227, 325, 227, 329, 290, 272, 290);
       ellipse(300, 170, 140, 160);
-
+      
       // 앞머리
       fill('#323232');
       stroke('#323232');
-      strokeWeight(1);
       bezier(300, 90, 290, 120, 220, 155, 220, 155);
       bezier(300, 90, 235, 89, 220, 155, 220, 155);
       bezier(300, 90, 365, 89, 380, 155, 380, 155);
       bezier(300, 90, 310, 120, 380, 155, 380, 155);
-
+      
       // 옷
-      fill('#FFB6C1');
+      fill('#000000');
       noStroke();
       quad(245, 290, 355, 290, 435, 400, 160, 400);
       bezier(245, 290, 190, 300, 175, 350, 160, 400);
       bezier(355, 290, 410, 300, 425, 350, 435, 400);
-
+      
       // 목과 옷 연결 부위
       fill('#FAEBD7');
       arc(300, 290, 95, 60, 0, PI);
-
+      
       // 쇄골
       noFill();
       stroke('#FFD5A6');
-      strokeWeight(2.3);
+      style값변경 = 2.3;
+      strokeWeight(style값변경);
       bezier(288, 305, 280, 300, 280, 300, 258, 300);
       bezier(312, 305, 320, 300, 320, 300, 342, 300);
-
-      // 목걸이 줄 및 펜던트
+      
+      // 목걸이
       noFill();
       stroke('#FFE650');
       strokeWeight(2);
       bezier(329, 290, 300.5, 340, 300.5, 340, 272, 290);
       noStroke();
-      fill(255); 
-      circle(300.5, 328, 20);
-
+      fill(255); // [수정] 300에서 최대치인 흰색(255)으로 변경
+      circle(300.5, 328, 5);
+      
       // 눈
       fill(0);
       ellipse(270, 170, 13, 15);
       ellipse(330, 170, 13, 15);
       noFill();
       stroke(0);
-      strokeWeight(1);
       bezier(278, 165, 268, 158, 260, 167, 255, 165);
       bezier(322, 165, 332, 158, 340, 167, 345, 165);
-      fill(255);
-      noStroke();
+      fill(255); // [수정] 300에서 최대치인 흰색(255)으로 변경
       circle(267, 168, 5);
       circle(327, 168, 5);
-
+      
       // 코
       noFill();
       stroke('#F0CB85');
       strokeWeight(3);
       bezier(295, 195, 300, 190, 300, 190, 305, 195);
-
+      
       // 입
       stroke('#CC6666');
-      strokeWeight(2);
       bezier(277, 215, 300, 223, 300, 223, 323, 215);
-
+      
       // 귀
       stroke('#E6C17B');
       strokeWeight(2);
       bezier(225, 165, 220, 160, 215, 180, 230, 190);
       bezier(375, 165, 380, 160, 385, 180, 370, 190);
-
+      
       // 턱
       stroke('#FFD5A6');
       strokeWeight(2);
       bezier(279, 245, 300, 250, 300, 250, 321, 245);
-
+      
       // 옆얼굴 선
       bezier(230, 153, 231, 175, 233, 185, 236, 201);
       bezier(370, 153, 369, 175, 367, 185, 364, 201);
-
+      
       // 눈썹
-      stroke('#787878');
-      strokeWeight(1.5);
+      stroke('#787878'); // [수정] 세미콜론 추가
       bezier(282, 145, 270, 142, 255, 144, 245, 148);
       bezier(318, 145, 330, 142, 345, 144, 355, 148);
     }
