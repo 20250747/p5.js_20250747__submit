@@ -1,46 +1,120 @@
-function setup() {
-  createCanvas(400, 400);
-  background('#336699');
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>과제 1 - 도형 활용 추상화</title>
   
-  noStroke()
-  fill('#006633')
-  circle(200,200,210);
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
   
-  fill('#000066')
-  circle(200,200,200)
-  
-  fill('#000099')
-  noStroke()
-  triangle(200, 100, 113, 250, 287, 250);
-  triangle(200, 300, 113, 150, 287, 150);
-  
-  fill('#FFFF66')
-  quad(200, 100, 190, 200, 200, 300, 210, 200)
-  quad(113, 150, 200, 210, 287, 150, 200, 190)
-  quad(113, 250, 200, 210, 287, 250, 200, 190)
-  
-  fill('#669966')
-  quad(200, 360, 200, 380, 380, 230, 380, 210)
-  quad(180, 10, 180, 30, 10, 200, 10, 180)
-   
-  fill('#FFCCFF')
-  circle(50, 350, 20)
-  circle(65, 260, 50)
-  circle(150, 350, 60)
-  
-  fill('#FF99CC')
-  circle(210, 40, 30)
-  circle(350, 150, 50)
-  circle(330, 50, 80)
-  
-  fill('#006600')
-  quad(350, 210, 330, 220, 290, 380, 310, 370)
-  quad(30, 200, 40, 210, 140, 20, 130, 10)
-  
-  fill('#000066')
-  circle(0, 0, 160)
-  circle(400, 360, 80)
-  }
+  <style>
+    body {
+      background-color: #0b0f19;
+      color: #ffffff;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-function draw() {
+    .header-area {
+      text-align: center;
+      margin-bottom: 30px;
+      max-width: 600px;
+    }
+
+    .back-link {
+      color: #3b82f6;
+      text-decoration: none;
+      font-size: 0.95rem;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .back-link:hover {
+      color: #60a5fa;
+    }
+
+    h1 {
+      margin: 0 0 10px 0;
+      font-size: 2rem;
+    }
+
+    p {
+      color: #9ca3af;
+      margin: 0;
+    }
+
+    /* 캔버스 테두리 스타일 */
+    canvas {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-area">
+    <a href="index.html" class="back-link">← 메인 페이지로 돌아가기</a>
+    <h1>과제 1: 도형 활용 추상화</h1>
+    <p>다양한 기본 도형을 활용하여 만든 추상화 작품입니다.</p>
+  </div>
+
+  <script>
+    function setup() {
+      // 400x400 사이즈의 도화지를 생성합니다.
+      createCanvas(400, 400); 
+    }
+
+    function draw() {
+      // 배경색 및 도형 그리기는 반복해서 화면을 렌더링하는 draw 안에서 실행하는 것이 안전합니다.
+      background('#336699'); 
+      
+      noStroke(); // 세미콜론 추가
+      fill('#006633');
+      circle(200, 200, 210);
+      
+      fill('#000066');
+      circle(200, 200, 200);
+      
+      fill('#000099');
+      noStroke(); // 세미콜론 추가
+      triangle(200, 100, 113, 250, 287, 250);
+      triangle(200, 300, 113, 150, 287, 150);
+      
+      fill('#FFFF66');
+      quad(200, 100, 190, 200, 200, 300, 210, 200);
+      quad(113, 150, 200, 210, 287, 150, 200, 190);
+      quad(113, 250, 200, 210, 287, 250, 200, 190);
+      
+      fill('#669966');
+      quad(200, 360, 200, 380, 380, 230, 380, 210);
+      quad(180, 10, 180, 30, 10, 200, 10, 180);
+      
+      fill('#FFCCFF');
+      circle(50, 350, 20);
+      circle(65, 260, 50);
+      circle(150, 350, 60);
+      
+      fill('#FF99CC');
+      circle(210, 40, 30);
+      circle(350, 150, 50);
+      circle(330, 50, 80);
+      
+      fill('#006600');
+      quad(350, 210, 330, 220, 290, 380, 310, 370);
+      quad(30, 200, 40, 210, 140, 20, 130, 10);
+      
+      fill('#000066');
+      circle(0, 0, 160);
+      circle(400, 360, 80);
+    }
+  </script>
+
+</body>
+</html>
 }
