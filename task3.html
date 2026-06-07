@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>과제 3 - 인터랙티브 애니메이션</title>
+  <title>과제 3 - 조건문 기반 인터랙션 명세</title>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
   
@@ -32,6 +32,7 @@
       font-size: 0.95rem;
       display: inline-block;
       margin-bottom: 15px;
+      transition: color 0.2s;
     }
 
     .back-link:hover {
@@ -45,7 +46,7 @@
 
     p {
       color: #9ca3af;
-      margin: 0;
+      margin: 0 0 15px 0;
       line-height: 1.6;
     }
 
@@ -59,7 +60,6 @@
       color: #3b82f6;
     }
 
-    /* 캔버스 테두리 스타일 */
     canvas {
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 12px;
@@ -72,45 +72,56 @@
 
   <div class="header-area">
     <a href="index.html" class="back-link">← 메인 페이지로 돌아가기</a>
-    <h1>과제 3: 인터랙티브 이벤트 애니메이션</h1>
-    <p>마우스 포인터의 위치와 키보드 타이핑 조합을 인식하여 실시간으로 변화하는 반응형 코드입니다.</p>
+    <h1>과제 3: 조건문 기반 인터랙션 명세</h1>
+    <p>마우스 클릭 이벤트 또는 마우스 포인터의 위치(X, Y 조건 분기)에 따라 캐릭터의 표정이나 배경 요소가 유기적으로 변화하는 인터랙티브 코드입니다.</p>
     <div class="guide-box">
-      <strong>🎮 조작 방법:</strong> 마우스 올리기(표정 변화) | 키보드 <code>H</code> 누르기(단발 변신) | 연속으로 <code>sleep</code> 타이핑하기(이불 덮기)
+      <strong>🎮 조작 방법:</strong> 캔버스 안에서 마우스를 움직이거나 클릭해 보세요!
     </div>
   </div>
 
   <script>
-    let shortHair = false;   // 머리카락 상태
-    let typedText = "";      // 입력된 키 저장
-    let isSleeping = false;  // 이불 상태
-
-    function setup(){
+    function setup() {
       createCanvas(600, 400);
     }
 
     function draw() {
-      background('#99CC99');
-
+      // 마우스 클릭 상태에 따른 조건문 분기 배경 처리
+      if (mouseIsPressed) {
+        background('#7FB37F'); 
+      } else {
+        background('#99CC99'); 
+      }
+      
       // 뒷 머리카락
       noStroke();
       fill('#323232');
-      if (shortHair) {
-        // 짧은 머리
-        ellipse(300, 150, 215, 220);
-      } else {
-        // 긴 머리
-        ellipse(300, 220, 215, 330);
-      }
+      ellipse(300, 220, 215, 330); 
+
+      // 얼굴
+      fill('#FAEBD7');
+      noStroke();
+      circle(240, 175, 55);
+      circle(360, 175, 55);
+      quad(276, 227, 325, 227, 329, 290, 272, 290);
+      ellipse(300, 170, 140, 160);
+
+      // 앞머리
+      fill('#323232');
+      stroke('#323232');
+      strokeWeight(1);
+      bezier(300, 90, 290, 120, 220, 155, 220, 155);
+      bezier(300, 90, 235, 89, 220, 155, 220, 155);
+      bezier(300, 90, 365, 89, 380, 155, 380, 155);
+      bezier(300, 90, 310, 120, 380, 155, 380, 155);
 
       // 옷
-      fill('#000000');
+      fill('#FFB6C1');
       noStroke();
       quad(245, 290, 355, 290, 435, 400, 160, 400);
       bezier(245, 290, 190, 300, 175, 350, 160, 400);
       bezier(355, 290, 410, 300, 425, 350, 435, 400);
 
       // 목과 옷 연결 부위
-      noStroke();
       fill('#FAEBD7');
       arc(300, 290, 95, 60, 0, PI);
 
@@ -121,29 +132,35 @@
       bezier(288, 305, 280, 300, 280, 300, 258, 300);
       bezier(312, 305, 320, 300, 320, 300, 342, 300);
 
-      // 목걸이
+      // 목걸이 줄 및 펜던트
       noFill();
       stroke('#FFE650');
       strokeWeight(2);
       bezier(329, 290, 300.5, 340, 300.5, 340, 272, 290);
       noStroke();
-      fill(255); // [수정] 300 -> 흰색(255)
-      circle(300.5, 328, 5);
+      fill(255); 
+      circle(300.5, 328, 20);
 
-      // 얼굴
-      noStroke();
-      fill('#FAEBD7');
-      circle(240, 175, 55);
-      circle(360, 175, 55);
-      quad(276, 227, 325, 227, 329, 290, 272, 290);
-      ellipse(300, 170, 140, 160);
-
-      // 귀
+      // 눈 (마우스 위치 조건식 인터랙션 적용)
+      fill(0);
+      ellipse(270, 170, 13, 15);
+      ellipse(330, 170, 13, 15);
       noFill();
-      stroke('#E6C17B');
-      strokeWeight(2);
-      bezier(225, 165, 220, 160, 215, 180, 230, 190);
-      bezier(375, 165, 380, 160, 385, 180, 370, 190);
+      stroke(0);
+      strokeWeight(1);
+      bezier(278, 165, 268, 158, 260, 167, 255, 165);
+      bezier(322, 165, 332, 158, 340, 167, 345, 165);
+      
+      // 마우스가 우측에 있을 때 눈동자 하이라이트 위치 변경 조건식
+      fill(255);
+      noStroke();
+      if (mouseX > width / 2) {
+        circle(269, 168, 5);
+        circle(329, 168, 5);
+      } else {
+        circle(265, 168, 5);
+        circle(325, 168, 5);
+      }
 
       // 코
       noFill();
@@ -151,8 +168,25 @@
       strokeWeight(3);
       bezier(295, 195, 300, 190, 300, 190, 305, 195);
 
+      // 입 (마우스 클릭 조건에 따른 표정 분기)
+      if (mouseIsPressed) {
+        stroke('#CC6666');
+        strokeWeight(3);
+        // 활짝 웃는 모양으로 좌표 변경
+        bezier(277, 215, 300, 230, 300, 230, 323, 215);
+      } else {
+        stroke('#CC6666');
+        strokeWeight(2);
+        bezier(277, 215, 300, 223, 300, 223, 323, 215);
+      }
+
+      // 귀
+      stroke('#E6C17B');
+      strokeWeight(2);
+      bezier(225, 165, 220, 160, 215, 180, 230, 190);
+      bezier(375, 165, 380, 160, 385, 180, 370, 190);
+
       // 턱
-      noFill();
       stroke('#FFD5A6');
       strokeWeight(2);
       bezier(279, 245, 300, 250, 300, 250, 321, 245);
@@ -163,84 +197,9 @@
 
       // 눈썹
       stroke('#787878');
+      strokeWeight(1.5);
       bezier(282, 145, 270, 142, 255, 144, 245, 148);
       bezier(318, 145, 330, 142, 345, 144, 355, 148);
-
-      // 앞머리
-      fill('#323232');
-      stroke('#323232');
-      strokeWeight(1); // 선 두께 초기화 안전장치
-      bezier(300, 90, 290, 120, 220, 155, 220, 155);
-      bezier(300, 90, 235, 89, 220, 155, 220, 155);
-      bezier(300, 90, 365, 89, 380, 155, 380, 155);
-      bezier(300, 90, 310, 120, 380, 155, 380, 155);
-
-      // 마우스 위치 확인
-      let isMouseOver = mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height;
-
-      // 눈 감지 및 그리기
-      if (isMouseOver) {
-        stroke(0);
-        strokeWeight(2); // 실선 눈 두께 조절
-        line(280, 170, 255, 170);
-        line(345, 170, 320, 170);
-      } else {
-        noStroke();
-        fill(0);
-        ellipse(270, 170, 13, 15);
-        ellipse(330, 170, 13, 15);
-        noFill();
-        stroke(0);
-        strokeWeight(1);
-        bezier(278, 165, 268, 158, 260, 167, 255, 165);
-        bezier(322, 165, 332, 158, 340, 167, 345, 165);
-        fill(255); // [수정] 300 -> 흰색(255)
-        circle(267, 168, 5);
-        circle(327, 168, 5);
-      }
-
-      // 입 감지 및 그리기
-      if (isMouseOver) {
-        stroke('#CC6666');
-        strokeWeight(1);
-        fill(150, 0, 0);
-        ellipse(300, 215, 25, 12); // 위치를 살짝 위로 당겼습니다.
-      } else {
-        noFill();
-        stroke('#CC6666');
-        strokeWeight(2);
-        bezier(277, 215, 300, 223, 300, 223, 323, 215);
-      }
-
-      // 이불 그리기 (sleep 입력 조건 충족 시 작동)
-      if (isSleeping) {
-        noStroke();
-        fill('#6699FF');
-        rect(150, 250, 300, 160, 20); // 이불 생성
-      }
-    }
-
-    function keyPressed() {
-      // 머리카락 변형 (H 키)
-      if (key === 'h' || key === 'H') {
-        shortHair = !shortHair;
-      }
-
-      // sleep 입력 감지 메커니즘
-      if (typeof key === 'string' && key.length === 1) {
-        typedText += key.toLowerCase();
-      }
-
-      // 텍스트 누적 제어 및 문자열 비교
-      if (typedText.endsWith("sleep")) {
-        isSleeping = !isSleeping;
-        typedText = "";
-      }
-
-      // GIF 저장 (S 키)
-      if (key === 's' || key === 'S') {
-        saveGif('mySketch', 10);
-      }
     }
   </script>
 
