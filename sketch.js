@@ -80,7 +80,7 @@
 
   <main class="gallery-container">
     
-    <a href="index.html" class="gallery-item 도형-활용">
+    <a href="task1.html" class="gallery-item 도형-활용">
       <div class="content-wrapper">
         <span class="work-tag">도형활용</span>
         <h2>과제 1</h2>
@@ -89,7 +89,7 @@
       <div class="arrow-icon">→</div>
     </a>
 
-    <a href="task1.html" class="gallery-item 도형-활용">
+    <a href="task2.html" class="gallery-item 도형-활용">
       <div class="content-wrapper">
         <span class="work-tag">도형활용</span>
         <h2>과제 2</h2>
@@ -98,7 +98,7 @@
       <div class="arrow-icon">→</div>
     </a>
 
-    <a href="task2.html" class="gallery-item 움직임-코드-활용">
+    <a href="task3.html" class="gallery-item 움직임-코드-활용">
       <div class="content-wrapper">
         <span class="work-tag">움직임 코드 활용</span>
         <h2>과제 3</h2>
@@ -107,7 +107,7 @@
       <div class="arrow-icon">→</div>
     </a>
 
-    <a href="task3.html" class="gallery-item 움직임-코드-활용">
+    <a href="task4.html" class="gallery-item 움직임-코드-활용">
       <div class="content-wrapper">
         <span class="work-tag">움직임 코드 활용</span>
         <h2>과제 4</h2>
