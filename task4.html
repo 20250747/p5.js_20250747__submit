@@ -8,10 +8,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
   
   <style>
-    /* 기본 배경 및 텍스트 설정 */
     body {
-      background-color: #0b0f19 !important; /* 배경을 강제로 짙은 남색으로 고정 */
-      color: #ffffff !important;           /* 전체 글자색을 강제로 흰색으로 고정 */
+      background-color: #0b0f19;
+      color: #ffffff;
       font-family: sans-serif;
       margin: 0;
       padding: 40px 20px;
@@ -21,70 +20,50 @@
       min-height: 100vh;
     }
 
-    /* 설명 구역 전체 레이아웃 */
     .header-area {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       max-width: 600px;
-      width: 100%;
-      display: block !important; /* 브라우저가 요소를 숨기지 못하도록 강제 */
     }
 
-    /* 돌아가기 링크 스타일 */
     .back-link {
-      color: #3b82f6 !important; /* 파란색 고정 */
+      color: #3b82f6;
       text-decoration: none;
       font-size: 0.95rem;
       display: inline-block;
       margin-bottom: 15px;
-      font-weight: bold;
+      transition: color 0.2s;
     }
 
     .back-link:hover {
-      color: #60a5fa !important;
+      color: #60a5fa;
     }
 
-    /* 과제 제목 */
     h1 {
-      margin: 0 0 12px 0 !important;
-      font-size: 2.2rem !important;
-      color: #ffffff !important; /* 강제 흰색 처리 */
-      font-weight: 800;
+      margin: 0 0 10px 0;
+      font-size: 2rem;
     }
 
-    /* 과제 설명문 */
-    p.description {
-      color: #e5e7eb !important; /* 밝은 회색으로 변경하여 가독성 확보 */
-      font-size: 1.05rem !important;
-      margin: 0 0 15px 0 !important;
+    p {
+      color: #9ca3af;
+      margin: 0 0 15px 0;
       line-height: 1.6;
     }
 
-    /* 안내 조작 가이드 박스 */
     .guide-box {
-      background: rgba(59, 130, 246, 0.15) !important; /* 투명한 파란 배경 */
-      border: 2px solid #3b82f6 !important;            /* 파란 테두리 선명하게 */
-      padding: 14px 22px;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      color: #ffffff !important; /* 안내 텍스트 흰색 강제 */
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #3b82f6;
     }
 
-    .guide-box code {
-      background: #1e293b;
-      padding: 2px 6px;
-      border-radius: 4px;
-      color: #f43f5e; /* 단축키 키워드는 붉은빛으로 강조 */
-      font-weight: bold;
-    }
-
-    /* p5.js 캔버스 테두리 스타일 */
     canvas {
-      border: 2px solid rgba(255, 255, 255, 0.25) !important;
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 12px;
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       margin-top: 20px;
     }
   </style>
@@ -94,9 +73,9 @@
   <div class="header-area">
     <a href="index.html" class="back-link">← 메인 페이지로 돌아가기</a>
     <h1>과제 4: 색상 및 크기 변화 애니메이션</h1>
-    <p class="description">시간의 흐름과 프레임 카운트를 수학적 주기 함수로 계산하여 자연스러운 움직임과 무지개 색상 동적 변화를 구현한 최종 작업물입니다.</p>
+    <p>시간의 흐름과 프레임 카운트를 수학적 주기 함수로 계산하여 자연스러운 움직임과 무지개 색상 동적 변화를 구현한 최종 작업물입니다.</p>
     <div class="guide-box">
-      <strong>🎮 조작 방법:</strong> 키보드 <code>S</code> 또는 <code>s</code>를 누르면 현재 화면을 10초짜리 GIF 짤방 파일로 즉시 폰이나 PC에 저장합니다.
+      <strong>🎮 조작 방법:</strong> 키보드 <code>S</code> 누르기 (10초짜리 GIF 파일 저장)
     </div>
   </div>
 
@@ -108,7 +87,7 @@
     function draw() {
       background('#99CC99');
       
-      // 뒷 머리카락 계산 및 그리기
+      // 뒷 머리카락 연산 및 회전 루프
       let timeInSeconds = millis() / 1000.0;
       let wave = cos(frameCount * 0.04);
       let swingAngle = sin(wave) * 0.04;  
@@ -132,13 +111,13 @@
       // 앞머리
       fill('#323232');
       stroke('#323232');
-      strokeWeight(1); 
+      strokeWeight(1);
       bezier(300, 90, 290, 120, 220, 155, 220, 155);
       bezier(300, 90, 235, 89, 220, 155, 220, 155);
       bezier(300, 90, 365, 89, 380, 155, 380, 155);
       bezier(300, 90, 310, 120, 380, 155, 380, 155);
 
-      // 옷 (HSB 모드 변환 및 그리기)
+      // 옷 (무지개 훌라 효과 색상 연산 구역 복구 완료)
       push(); 
         colorMode(HSB, 360, 100, 100);
         let rainbowHue = (frameCount * 0.5) % 360;
@@ -168,14 +147,14 @@
       strokeWeight(2);
       bezier(329, 290, 300.5, 340, 300.5, 340, 272, 290);
       
-      // 목걸이 펜던트 애니메이션
+      // 목걸이 펜던트 팽창 애니메이션
       noStroke();
-      fill(255); 
+      fill(255); // 300 오버플로우 수정 (최대 흰색 값 255)
       let angle = frameCount * 0.05;
       let diameter = 20 + sin(angle) * 15;
       circle(300.5, 328, diameter);
 
-      // 눈
+      // 눈 형태 및 동공 하이라이트
       fill(0);
       ellipse(270, 170, 13, 15);
       ellipse(330, 170, 13, 15);
@@ -184,8 +163,6 @@
       strokeWeight(1);
       bezier(278, 165, 268, 158, 260, 167, 255, 165);
       bezier(322, 165, 332, 158, 340, 167, 345, 165);
-      
-      // 눈 하이라이트
       fill(255); 
       noStroke();
       circle(267, 168, 5);
